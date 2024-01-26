@@ -21,7 +21,6 @@ class _LoginScreenState extends State<LoginScreen> {
     EdgeInsets safeAreaPadding = MediaQuery.of(context).padding;
 
     return Scaffold(
-      backgroundColor: AppColors.darkBlue,
       body: SafeArea(
         top: false,
         child: CustomScrollView(
@@ -30,50 +29,53 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Stack(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/elipse.svg',
-                        width: 177,
-                      ),
-                      Container(
-                        padding: EdgeInsets.only(
-                          top: 118 + safeAreaPadding.top,
-                          bottom: 50,
+                  Container(
+                    color: AppColors.darkBlue,
+                    child: Stack(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/icons/elipse.svg',
+                          width: 177,
                         ),
-                        width: double.infinity,
-                        color: Colors.transparent,
-                        child: const Column(
-                          children: [
-                            Text(
-                              'Log In',
-                              style: TextStyle(
-                                fontSize: 30,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.white,
-                                height: 36 / 30,
-                                leadingDistribution:
-                                    TextLeadingDistribution.even,
+                        Container(
+                          padding: EdgeInsets.only(
+                            top: 118 + safeAreaPadding.top,
+                            bottom: 50,
+                          ),
+                          width: double.infinity,
+                          color: Colors.transparent,
+                          child: const Column(
+                            children: [
+                              Text(
+                                'Log In',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.white,
+                                  height: 36 / 30,
+                                  leadingDistribution:
+                                      TextLeadingDistribution.even,
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 3,
-                            ),
-                            Text(
-                              'Please sign in to your existing account',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.white,
-                                height: 26 / 16,
-                                leadingDistribution:
-                                    TextLeadingDistribution.even,
+                              SizedBox(
+                                height: 3,
                               ),
-                            ),
-                          ],
+                              Text(
+                                'Please sign in to your existing account',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.white,
+                                  height: 26 / 16,
+                                  leadingDistribution:
+                                      TextLeadingDistribution.even,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                   Expanded(
                     child: Stack(
