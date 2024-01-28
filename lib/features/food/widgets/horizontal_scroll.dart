@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/config/constants/app_colors.dart';
 import 'package:food_app/config/theme/app_theme.dart';
 import 'package:food_app/features/food/data/dishes.dart';
 import 'package:food_app/features/food/models/dish.dart';
 import 'package:food_app/features/food/widgets/dish_card.dart';
 
-class HorizontalScroll extends StatelessWidget {
+class HorizontalScroll extends ConsumerWidget {
   const HorizontalScroll({
     super.key,
     required this.label,
@@ -16,7 +17,9 @@ class HorizontalScroll extends StatelessWidget {
   final Category category;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool isDarkMode = ref.watch(isDarkModeProvider);
+
     final filteredDishes = dishes
         .where(
           (dish) => dish.category == category,
@@ -37,7 +40,8 @@ class HorizontalScroll extends StatelessWidget {
               child: Text(
                 label,
                 style: AppTheme.subtitle2(
-                  color: AppColors.neutral600,
+                  color:
+                      isDarkMode ? AppColors.neutral200 : AppColors.neutral600,
                 ),
               ),
             ),

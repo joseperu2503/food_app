@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:food_app/config/constants/app_colors.dart';
 import 'package:food_app/config/constants/app_fonts.dart';
 
 class AppTheme {
+  final bool isDarkMode;
+
+  AppTheme({
+    required this.isDarkMode,
+  });
+
   ThemeData getTheme() => ThemeData(
-        scaffoldBackgroundColor: AppColors.backgroundLight,
+        scaffoldBackgroundColor:
+            isDarkMode ? AppColors.backgroundDark : AppColors.backgroundLight,
         useMaterial3: true,
       );
 
@@ -307,3 +315,5 @@ class AppTheme {
     );
   }
 }
+
+final isDarkModeProvider = StateProvider((ref) => true);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/config/constants/app_colors.dart';
 import 'package:food_app/config/constants/app_fonts.dart';
@@ -6,12 +7,13 @@ import 'package:food_app/config/theme/app_theme.dart';
 import 'package:food_app/features/food/models/dish.dart';
 import 'package:food_app/features/food/widgets/horizontal_scroll.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends ConsumerWidget {
   const DashboardScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     EdgeInsets safeAreaPadding = MediaQuery.of(context).padding;
+    final bool isDarkMode = ref.watch(isDarkModeProvider);
 
     return Scaffold(
       body: CustomScrollView(
@@ -42,7 +44,9 @@ class DashboardScreen extends StatelessWidget {
                         Text(
                           'Gram Bistro',
                           style: AppTheme.heading5(
-                            color: AppColors.neutral500,
+                            color: isDarkMode
+                                ? AppColors.neutral200
+                                : AppColors.neutral500,
                           ),
                         ),
                       ],
@@ -54,7 +58,9 @@ class DashboardScreen extends StatelessWidget {
                   Text(
                     'Choose the best dish for you',
                     style: AppTheme.heading2(
-                      color: AppColors.neutral800,
+                      color: isDarkMode
+                          ? AppColors.neutral0
+                          : AppColors.neutral800,
                     ),
                   ),
                   const SizedBox(
@@ -68,10 +74,14 @@ class DashboardScreen extends StatelessWidget {
                     ),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: AppColors.neutral0,
+                      color: isDarkMode
+                          ? const Color.fromRGBO(74, 74, 106, 0.3)
+                          : AppColors.neutral0,
                       border: Border.all(
                         width: 1,
-                        color: AppColors.neutral150,
+                        color: isDarkMode
+                            ? AppColors.neutral600
+                            : AppColors.neutral150,
                       ),
                     ),
                     child: Row(
@@ -85,7 +95,9 @@ class DashboardScreen extends StatelessWidget {
                         Text(
                           'Search',
                           style: AppTheme.inputPlaceholderDefault(
-                            color: AppColors.neutral500,
+                            color: isDarkMode
+                                ? AppColors.neutral200
+                                : AppColors.neutral500,
                           ),
                         ),
                         const Spacer(),
@@ -105,7 +117,9 @@ class DashboardScreen extends StatelessWidget {
                     height: 145,
                     padding: const EdgeInsets.only(left: 22),
                     decoration: BoxDecoration(
-                      color: AppColors.neutral900,
+                      color: isDarkMode
+                          ? AppColors.neutral150
+                          : AppColors.neutral900,
                       borderRadius: BorderRadius.circular(16),
                     ),
                     child: Row(
@@ -119,7 +133,9 @@ class DashboardScreen extends StatelessWidget {
                               Text(
                                 'Product of the day',
                                 style: AppTheme.caption3(
-                                  color: AppColors.neutral400,
+                                  color: isDarkMode
+                                      ? AppColors.neutral500
+                                      : AppColors.neutral400,
                                 ),
                               ),
                               const SizedBox(
@@ -128,7 +144,9 @@ class DashboardScreen extends StatelessWidget {
                               Text(
                                 'Avocado Chicken Salad',
                                 style: AppTheme.heading5(
-                                  color: AppColors.neutral0,
+                                  color: isDarkMode
+                                      ? AppColors.neutral800
+                                      : AppColors.neutral0,
                                 ),
                               ),
                               const SizedBox(
@@ -142,7 +160,7 @@ class DashboardScreen extends StatelessWidget {
                                     style: TextStyle(
                                       fontFamily: AppFonts.mulish,
                                       fontSize: 9,
-                                      fontWeight: FontWeight.w600,
+                                      fontWeight: FontWeight.w700,
                                       color: AppColors.tertiary200,
                                       height: 15 / 9,
                                       leadingDistribution:
@@ -175,18 +193,22 @@ class DashboardScreen extends StatelessWidget {
                                 child: Container(
                                   width: 162,
                                   height: 162,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Color.fromRGBO(255, 255, 255, 0.04),
+                                    color: isDarkMode
+                                        ? AppColors.neutral800.withOpacity(0.04)
+                                        : AppColors.black.withOpacity(0.04),
                                   ),
                                   child: Center(
                                     child: Container(
                                       width: 130,
                                       height: 130,
-                                      decoration: const BoxDecoration(
+                                      decoration: BoxDecoration(
                                         shape: BoxShape.circle,
-                                        color:
-                                            Color.fromRGBO(255, 255, 255, 0.06),
+                                        color: isDarkMode
+                                            ? AppColors.neutral800
+                                                .withOpacity(0.05)
+                                            : AppColors.black.withOpacity(0.06),
                                       ),
                                       child: Image.network(
                                         'https://files.joseperezgil.com/images/dishes/dish1.png',
@@ -234,9 +256,13 @@ class DashboardScreen extends StatelessWidget {
                             fontSize: 16,
                             fontWeight:
                                 index == 0 ? FontWeight.w700 : FontWeight.w500,
-                            color: index == 0
-                                ? AppColors.neutral0
-                                : AppColors.neutral600,
+                            color: isDarkMode
+                                ? (index == 0
+                                    ? AppColors.neutral800
+                                    : AppColors.neutral100)
+                                : (index == 0
+                                    ? AppColors.neutral0
+                                    : AppColors.neutral600),
                             height: 20 / 16,
                             leadingDistribution: TextLeadingDistribution.even,
                           ),

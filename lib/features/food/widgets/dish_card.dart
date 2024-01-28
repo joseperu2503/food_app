@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/config/constants/app_colors.dart';
 import 'package:food_app/config/constants/app_fonts.dart';
 import 'package:food_app/config/theme/app_theme.dart';
 import 'package:food_app/features/food/models/dish.dart';
 
-class DishCard extends StatelessWidget {
+class DishCard extends ConsumerWidget {
   const DishCard({
     super.key,
     required this.dish,
@@ -14,7 +15,9 @@ class DishCard extends StatelessWidget {
   final Dish dish;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bool isDarkMode = ref.watch(isDarkModeProvider);
+
     return Stack(
       children: [
         Container(
@@ -22,7 +25,7 @@ class DishCard extends StatelessWidget {
           padding: const EdgeInsets.only(top: 12),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
-            color: AppColors.neutral0,
+            color: isDarkMode ? AppColors.neutral700 : AppColors.neutral0,
             boxShadow: AppColors.shadowCard,
           ),
           child: Column(
@@ -37,7 +40,8 @@ class DishCard extends StatelessWidget {
               Text(
                 dish.name,
                 style: AppTheme.subtitle3(
-                  color: AppColors.neutral800,
+                  color:
+                      isDarkMode ? AppColors.neutral0 : AppColors.neutral800,
                 ),
               ),
               const SizedBox(

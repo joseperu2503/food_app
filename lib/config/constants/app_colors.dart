@@ -14,7 +14,7 @@ class AppColors {
   static const Color checkboxLabel = Color(0xFF7E8A97);
 
   static const Color backgroundLight = Color(0xFFf7f7f7);
-  static const Color backgroundDark = Color(0xFFf7f7f7);
+  static const Color backgroundDark = Color(0xFF32324d);
 
   static const Color neutral0 = Color(0xFFFFFFFF);
   static const Color neutral100 = Color(0xFFF6F6F9);
@@ -54,6 +54,8 @@ class AppColors {
   static const Color danger200 = Color(0xFFFCCCCC);
   static const Color danger500 = Color(0xFFF24343);
   static const Color danger700 = Color(0xFFDE0F0F);
+
+  static const Color black = Color(0xFF000000);
 
   static const shadowCard = [
     BoxShadow(
