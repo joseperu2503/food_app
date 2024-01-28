@@ -3,12 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:food_app/config/constants/app_colors.dart';
 import 'package:food_app/config/constants/app_fonts.dart';
 import 'package:food_app/config/theme/app_theme.dart';
+import 'package:food_app/features/food/models/dish.dart';
+import 'package:food_app/features/food/widgets/horizontal_scroll.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    EdgeInsets safeAreaPadding = MediaQuery.of(context).padding;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -20,7 +24,33 @@ class DashboardScreen extends StatelessWidget {
                 top: 60,
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  SizedBox(
+                    height: 44,
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          'assets/icons/location-point.svg',
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Text(
+                          'Gram Bistro',
+                          style: AppTheme.heading5(
+                            color: AppColors.neutral500,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
                   Text(
                     'Choose the best dish for you',
                     style: AppTheme.heading2(
@@ -158,8 +188,9 @@ class DashboardScreen extends StatelessWidget {
                                         color:
                                             Color.fromRGBO(255, 255, 255, 0.06),
                                       ),
-                                      child: Image.asset(
-                                          'assets/images/dishes/dish1.png'),
+                                      child: Image.network(
+                                        'https://files.joseperezgil.com/images/dishes/dish1.png',
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -184,7 +215,7 @@ class DashboardScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  final dish = dishes[index];
+                  final dish = categories[index];
                   return GestureDetector(
                     onTap: () {},
                     child: Container(
@@ -219,20 +250,26 @@ class DashboardScreen extends StatelessWidget {
                     width: 8,
                   );
                 },
-                itemCount: dishes.length,
+                itemCount: categories.length,
               ),
             ),
           ),
-          SliverList.separated(
-            itemBuilder: (context, index) {
-              return Container();
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                width: 8,
-              );
-            },
-            itemCount: dishes.length,
+          const HorizontalScroll(
+            category: Category.mostPopular,
+            label: 'Most Popular',
+          ),
+          const HorizontalScroll(
+            category: Category.salad,
+            label: 'Salad',
+          ),
+          const HorizontalScroll(
+            category: Category.pasta,
+            label: 'Pasta',
+          ),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: safeAreaPadding.bottom + 10,
+            ),
           )
         ],
       ),
@@ -240,4 +277,9 @@ class DashboardScreen extends StatelessWidget {
   }
 }
 
-const List<String> dishes = ['All Dishes', 'Most Popular', 'Salad', 'Pasta'];
+const List<String> categories = [
+  'All Dishes',
+  'Most Popular',
+  'Salad',
+  'Pasta'
+];

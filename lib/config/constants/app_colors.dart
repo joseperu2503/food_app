@@ -54,4 +54,19 @@ class AppColors {
   static const Color danger200 = Color(0xFFFCCCCC);
   static const Color danger500 = Color(0xFFF24343);
   static const Color danger700 = Color(0xFFDE0F0F);
+
+  static const shadowCard = [
+    BoxShadow(
+      offset: Offset(0, 4),
+      blurRadius: 20,
+      spreadRadius: -2,
+      color: Color.fromRGBO(50, 50, 71, 0.04),
+    ),
+    BoxShadow(
+      offset: Offset(0, 0),
+      blurRadius: 1,
+      spreadRadius: 0,
+      color: Color.fromRGBO(12, 26, 75, 0.03),
+    ),
+  ];
 }
