@@ -316,4 +316,4 @@ class AppTheme {
   }
 }
 
-final isDarkModeProvider = StateProvider((ref) => true);
+final isDarkModeProvider = StateProvider((ref) => false);

@@ -20,10 +20,10 @@ class DashboardScreen extends ConsumerWidget {
         slivers: [
           SliverToBoxAdapter(
             child: Container(
-              padding: const EdgeInsets.only(
+              padding: EdgeInsets.only(
                 left: 24,
                 right: 24,
-                top: 60,
+                top: safeAreaPadding.top,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
