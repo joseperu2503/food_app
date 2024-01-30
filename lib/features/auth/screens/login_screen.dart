@@ -6,7 +6,7 @@ import 'package:food_app/features/auth/widgets/input_password.dart';
 import 'package:food_app/features/shared/inputs/email.dart';
 import 'package:food_app/features/shared/inputs/password.dart';
 import 'package:food_app/features/shared/widgets/checkbox.dart';
-import 'package:food_app/features/shared/widgets/custom_button.dart';
+import 'package:food_app/features/shared/widgets/custom_button_2.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               const SizedBox(
                                 height: 29,
                               ),
-                              CustomButton(
+                              CustomButton2(
                                 child: const Text(
                                   'LOG IN',
                                   style: TextStyle(

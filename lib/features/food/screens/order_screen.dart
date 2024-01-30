@@ -4,6 +4,7 @@ import 'package:food_app/config/constants/app_colors.dart';
 import 'package:food_app/config/theme/app_theme.dart';
 import 'package:food_app/features/food/data/dishes.dart';
 import 'package:food_app/features/food/widgets/order_item.dart';
+import 'package:food_app/features/shared/widgets/custom_button.dart';
 
 class OrderScreen extends ConsumerWidget {
   const OrderScreen({super.key});
@@ -48,7 +49,14 @@ class OrderScreen extends ConsumerWidget {
                 },
                 itemCount: 6,
               ),
-            )
+            ),
+            CustomButton(
+              textMedium: 'Send order',
+              withArrow: true,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
           ],
         ),
       ),
