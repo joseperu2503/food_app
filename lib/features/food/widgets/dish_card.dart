@@ -29,6 +29,7 @@ class DishCard extends ConsumerWidget {
           builder: (context) {
             return DishDetail(dish: dish);
           },
+          useRootNavigator: true,
         );
       },
       child: Stack(
