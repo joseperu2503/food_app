@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:food_app/features/auth/screens/login_screen.dart';
 import 'package:food_app/features/food/screens/dashboard_screen.dart';
+import 'package:food_app/features/food/screens/order_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final GlobalKey<NavigatorState> _sectionANavigatorKey =
@@ -69,7 +70,7 @@ final appRouter = GoRouter(
               GoRoute(
                 path: '/order',
                 builder: (BuildContext context, GoRouterState state) =>
-                    const DashboardScreen(),
+                    const OrderScreen(),
                 routes: const <RouteBase>[],
               ),
             ],
